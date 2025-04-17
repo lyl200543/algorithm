@@ -87,24 +87,73 @@ public class leetcode_27 {
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1 {
     public int removeElement (int[] nums , int val) {
-        Arrays.sort(nums);
-        int i, j;
-        for (i = 0 , j = nums.length - 1; i <= j ; ) {
-            if (val != nums[i])
-                i++;
-            if (val != nums[j])
-                j--;
-            if(i<=nums.length -1 && j>=0)
-                if (val == nums[i] && val == nums[j])
-                    break;
+//        Arrays.sort(nums);
+//        int i, j;
+//        for (i = 0 , j = nums.length - 1; i <= j ; ) {
+//            if (val != nums[i])
+//                i++;
+//            if (val != nums[j])
+//                j--;
+//            if(i<=nums.length -1 && j>=0)
+//                if (val == nums[i] && val == nums[j])
+//                    break;
+//        }
+//        if (j - i < 0)
+//            return nums.length;
+//        for (int k = j + 1 ; k < nums.length ; k++) {
+//            nums[k - j + i - 1] = nums[k];
+//        }
+//        int len = nums.length - (j - i + 1);
+//        return len;
+
+
+        //1.暴力法：
+
+//        int n = nums.length;
+//        for (int i = 0 ; i < n ; i++) {
+//            if (nums[i] == val) {
+//                for (int j = i + 1 ; j < n ; j++) {
+//                    nums[j-1]=nums[j];
+//                }
+//                i--;
+//                n--;
+//            }
+//        }
+//        return n;
+
+
+        //2.快慢指针法：
+        //双指针法（快慢指针法）： 通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。
+        //定义快慢指针
+        //快指针：寻找新数组的元素 ，新数组就是不含有目标元素的数组
+        //慢指针：指向更新 新数组下标的位置
+
+        int slowIndex = 0;
+        for (int fastIndex = 0 ; fastIndex < nums.length ; fastIndex++) {
+            if (nums[fastIndex] != val) {
+                nums[slowIndex] = nums[fastIndex];
+                slowIndex++;
+            }
         }
-        if (j - i < 0)
-            return nums.length;
-        for (int k = j + 1 ; k < nums.length ; k++) {
-            nums[k - j + i - 1] = nums[k];
-        }
-        int len = nums.length - (j - i + 1);
-        return len;
+        return slowIndex;
+
+
+        //3.双向指针法：
+
+//        int left = 0;
+//        int right = nums.length - 1;
+//        while (right >= 0 && nums[right] == val)
+//            right--;
+//        while (left <= right) {
+//            if (nums[left] == val) {
+//                nums[left] = nums[right];
+//                right--;
+//                while (right >= 0 && nums[right] == val)
+//                    right--;
+//            }
+//            left++;
+//        }
+//        return left;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
