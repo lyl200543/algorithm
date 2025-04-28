@@ -22,20 +22,34 @@ public class leetcode_206 {
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution2 {
     public ListNode reverseList (ListNode head) {
-        if (head == null) return head;
+//        if (head == null) return head;
+//
+//        ArrayList<ListNode> list = new ArrayList<>();
+//        while (head != null) {
+//            list.add(head);
+//            head = head.next;
+//        }
+//        ListNode newNode = list.get(list.size() - 1);
+//        for (int i = list.size() - 2 ; i >= 0 ; i--) {
+//            ListNode node = list.get(i);
+//            list.get(i + 1).next = node;
+//        }
+//        list.get(0).next = null;
+//        return newNode;
 
-        ArrayList<ListNode> list = new ArrayList<>();
-        while (head != null) {
-            list.add(head);
-            head = head.next;
-        }
-        ListNode newNode = list.get(list.size() - 1);
-        for (int i = list.size() - 2 ; i >= 0 ; i--) {
-            newNode .next =
 
+        //双指针法：逆转链表的指向
+        ListNode pre = head;
+        ListNode cur = null;
+        while (pre != null) {
+            ListNode tmp = cur;
+            cur = pre;
+            pre = pre.next;
+
+            cur.next =tmp;
         }
-        return newNode;
+        return cur;
     }
 }
