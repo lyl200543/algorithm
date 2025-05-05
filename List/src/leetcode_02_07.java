@@ -39,40 +39,57 @@ class Solution5 {
 
 
         //改进：
-        ListNode nodeA = headA;
-        ListNode nodeB = headB;
-        int a = 0;
-        int b = 0;
-        while (nodeA != null) {
-            nodeA = nodeA.next;
-            a++;
-        }
-        while (nodeB != null) {
-            nodeB = nodeB.next;
-            b++;
-        }
-        int num = a - b;
-        nodeA = headA;
-        nodeB = headB;
-        if (num >= 0) {
-            for (int i = 0 ; i < num ; i++) {
-                nodeA = nodeA.next;
-            }
+//        ListNode nodeA = headA;
+//        ListNode nodeB = headB;
+//        int a = 0;
+//        int b = 0;
+//        while (nodeA != null) {
+//            nodeA = nodeA.next;
+//            a++;
+//        }
+//        while (nodeB != null) {
+//            nodeB = nodeB.next;
+//            b++;
+//        }
+//        int num = a - b;
+//        nodeA = headA;
+//        nodeB = headB;
+//        if (num >= 0) {
+//            for (int i = 0 ; i < num ; i++) {
+//                nodeA = nodeA.next;
+//            }
+//
+//        } else {
+//            num = - num;
+//            for (int i = 0 ; i < num ; i++) {
+//                nodeB = nodeB.next;
+//            }
+//        }
+//        while (nodeA != nodeB && nodeA != null) {
+//            nodeA = nodeA.next;
+//            nodeB = nodeB.next;
+//
+//        }
+//        if(nodeA==nodeB)
+//            return nodeA;
+//        return null;
 
-        } else {
-            num = - num;
-            for (int i = 0 ; i < num ; i++) {
-                nodeB = nodeB.next;
-            }
-        }
-        while (nodeA != nodeB && nodeA != null) {
-            nodeA = nodeA.next;
-            nodeB = nodeB.next;
 
+        //超级改进版本：
+        ListNode p1=headA;
+        ListNode p2=headB;
+        while(p1!=p2){
+            if(p1==null)
+                p1=headB;
+            else
+                p1=p1.next;
+
+            if(p2==null)
+                p2=headA;
+            else
+                p2=p2.next ;
         }
-        if(nodeA==nodeB)
-            return nodeA;
-        return null;
+        return p1;
 
     }
 }
