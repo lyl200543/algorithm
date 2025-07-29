@@ -1,3 +1,5 @@
+package beginning;
+
 import java.util.Arrays;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Arrays;
  *@Version 1.0
  */
 
-public class class002 {
+public class class002_Experiment {
 
     public static void main(String[] args) {
         System.out.println("一个社会的基尼系数是一个在0~1之间的小数");

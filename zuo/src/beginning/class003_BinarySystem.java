@@ -1,12 +1,14 @@
+package beginning;
+
 /**
- *ClassName: class003
+ *ClassName: beginning.class003
  *Package: PACKAGE_NAME
  *Description:创建于 2025/7/24 21:18
  *如何打印一个数字的二进制表示（以int为例）
  *@Author lyl
  *@Version 1.0
  */
-public class class003 {
+public class class003_BinarySystem {
     public static void main (String[] args) {
         printBinary(10);
     }

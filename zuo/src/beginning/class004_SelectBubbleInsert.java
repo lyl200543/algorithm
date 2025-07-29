@@ -1,19 +1,21 @@
+package beginning;
+
 import java.util.Arrays;
 
 /**
- *ClassName: class004
+ *ClassName: beginning.class004
  *Package: PACKAGE_NAME
  *Description:创建于 2025/7/24 21:26
  *选择排序，冒泡排序，插入排序
  *@Author lyl
  *@Version 1.0
  */
-public class class004 {
+public class class004_SelectBubbleInsert {
     public static void main (String[] args) {
-        class004 class004 = new class004();
+        class004_SelectBubbleInsert class004 = new class004_SelectBubbleInsert();
         int[] arr = new int[]{2 , 4 , 3 , 1 , 5};
-//        class004.choice(arr);
-//        class004.bubble(arr);
+//        beginning.class004.choice(arr);
+//        beginning.class004.bubble(arr);
         class004.insert(arr);
         System.out.println(Arrays.toString(arr));
     }
