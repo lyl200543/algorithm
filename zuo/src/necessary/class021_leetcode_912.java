@@ -1,4 +1,4 @@
-package beginning;
+package necessary;
 
 /**
  *ClassName: class021_leetcode_912
@@ -14,7 +14,7 @@ public class class021_leetcode_912 {
 
 }
 
-class Solution6 {
+class Solution1 {
     public static int MAXN = 50001;
     public static int[] arr = new int[MAXN];
     public static int[] help = new int[MAXN];

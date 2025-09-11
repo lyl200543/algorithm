@@ -1,4 +1,4 @@
-package beginning;
+package necessary;
 
 /**
  *ClassName: class023_leetcode_912
@@ -11,7 +11,7 @@ package beginning;
 public class class023_leetcode_912 {
 }
 
-class Solution8 {
+class Solution3 {
     public int[] sortArray (int[] nums) {
         // quickSort1(nums, 0, nums.length - 1);
         quickSort2(nums , 0 , nums.length - 1);
