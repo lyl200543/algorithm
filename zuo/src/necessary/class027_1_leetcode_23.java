@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
  *ClassName: class027_1_leetcode_23
  *Package: necessary
  *Description:创建于 2025/9/13 19:13
+ * 合并k个有序链表
  *@Author lyl
  *@Version 1.0
  */
