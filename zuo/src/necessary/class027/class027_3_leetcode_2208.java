@@ -1,6 +1,4 @@
-package necessary;
-
-import java.util.Arrays;
+package necessary.class027;
 
 /**
  *ClassName: class027_3_leetcode_2208

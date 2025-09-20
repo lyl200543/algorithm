@@ -1,4 +1,4 @@
-package necessary;
+package necessary.class022;
 
 /**
  *ClassName: class022_2_leetcode_493
