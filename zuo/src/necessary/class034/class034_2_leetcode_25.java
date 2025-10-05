@@ -8,7 +8,7 @@ package necessary.class034;
  *@Author lyl
  *@Version 1.0
  */
-public class class024_2_leetcode_25 {
+public class class034_2_leetcode_25 {
 }
 class Solution21 {
     public ListNode reverseKGroup(ListNode head, int k) {
