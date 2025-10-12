@@ -28,17 +28,31 @@ class Solution2 {
         }
     }
 
-    private int MAXSIZE=2001;
-    private TreeNode[] queue=new TreeNode[MAXSIZE];
-    private int l,r;
+    private int MAXSIZE = 2001;
+    private TreeNode[] queue = new TreeNode[MAXSIZE];
+    private int l, r;
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> lists=new ArrayList<>();
-        if(root!=null){
-            l=r=0;
-            queue[r++]=root;
-            while(l<r){
-                
+        List<List<Integer>> lists = new ArrayList<>();
+        if (root != null) {
+            l = r = 0;
+            queue[r++] = root;
+            boolean reverse = false;
+            while (l < r) {
+                int size = r - l;
+                List<Integer> list = new ArrayList<>();
+                for (int i = reverse ? r - 1 : l, j = reverse ? -1 : 1, k = 0; k < size; k++, i += j) {
+                    list.add(queue[i].val);
+                }
+                for (int i = 0; i < size; i++) {
+                    TreeNode cur = queue[l++];
+                    if (cur.left != null)
+                        queue[r++] = cur.left;
+                    if (cur.right != null)
+                        queue[r++] = cur.right;
+                }
+                lists.add(list);
+                reverse = !reverse;
             }
         }
         return lists;
