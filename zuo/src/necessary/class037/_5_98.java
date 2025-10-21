@@ -1,5 +1,10 @@
 package necessary.class037;
 
+import com.sun.source.tree.Tree;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  *ClassName: _5_98
  *Package: necessary.class037
@@ -11,18 +16,69 @@ package necessary.class037;
  */
 public class _5_98 {
 }
-class Solution5 {
-    public boolean isValidBST(TreeNode root) {
 
+//root.val必须在区间（left,right）之间
+
+//class Solution {
+//    public boolean isValidBST(TreeNode root) {
+//        return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+//    }
+//    private boolean dfs(TreeNode root, long left , long right) {
+//        if (root == null) return true;
+//        if (root.val <= left || root.val >= right) return false;
+//        return dfs(root.left, left, root.val) && dfs(root.right, root.val, right);
+//    }
+//}
+
+
+class Solution5 {
+    private long max, min;
+
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            max = Long.MIN_VALUE;
+            min = Long.MAX_VALUE;
+            return true;
+        }
+        boolean ret1 = isValidBST(root.left);
+        long lmax = max;
+        long lmin = min;
+        boolean ret2 = isValidBST(root.right);
+        long rmax = max;
+        long rmin = min;
+        max = Math.max(Math.max(lmax, rmax), root.val);
+        min = Math.min(Math.min(lmin, rmin), root.val);
+        return ret1 && ret2 && lmax < root.val && rmin > root.val;
     }
+
 }
 
 //利用中序遍历一直递增就是搜索二叉树的性质（迭代）
-class Solution {
-    public boolean isValidBST(TreeNode root) {
-        
-    }
-}
+//class Solution {
+//    private int MAXSIZE=10001;
+//    private TreeNode[] stack=new TreeNode[MAXSIZE];
+//    private int r;
+//
+//    public boolean isValidBST(TreeNode root) {
+//        TreeNode pre=null;
+//        r=0;
+//        while(r>0||root!=null){
+//            if(root!=null){
+//                stack[r++]=root;
+//                root=root.left;
+//            }
+//            else{
+//                root = stack[--r];
+//                if(pre!=null && pre.val>=root.val){
+//                    return false;
+//                }
+//                pre=root;
+//                root=root.right;
+//            }
+//        }
+//        return true;
+//    }
+//}
 
 
 //没考虑父节点的父节点也有大小要求
