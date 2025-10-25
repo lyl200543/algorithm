@@ -18,34 +18,43 @@ public class _2_90 {
     }
 }
 
+
+//剪枝：例如：2222 333
+//没有按第一个2的有无，第二个2的有无...来分情况（2^4）
+//而是按有几个2来分情况（4）
 class Solution2 {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-        return subarray(nums,0);
-    }
-
-    private List<List<Integer>> subarray (int[] nums , int start) {
-        if(start >= nums.length){
-            List<List<Integer>> ans = new ArrayList<>();
-            ans.add(new ArrayList<>());
-            return ans;
-        }
         List<List<Integer>> ans=new ArrayList<>();
-        int val=nums[start];
-        int end=start+1;
-        while(end < nums.length && nums[end] == val){
-            end+=1;
-        }
-        List<List<Integer>> lists = subarray(nums , end);
-        ans.addAll(lists);
-        for (int i = 0 ; i < end - start ; i++) {
-            lists.forEach(list->list.add(val));
-            ans.addAll(lists);
-        }
+        subarray(nums,0,new int[nums.length],0,ans);
         return ans;
     }
 
+    private void subarray (int[] nums , int start,int[] path,int size, List<List<Integer>> ans) {
+        if(start >= nums.length){
+            List<Integer> tmp=new ArrayList<>();
+            for (int i = 0 ; i < size ; i++) {
+                tmp.add(path[i]);
+            }
+            ans.add(tmp);
+        }else {
+            int val=nums[start];
+            int end=start+1;
+            while(end < nums.length && nums[end] == val){
+                end+=1;
+            }
+            subarray(nums,end,path,size,ans);
+            for (int i = 0 ; i < end - start ; i++) {
+                path[size++]=val;
+                subarray(nums,end,path,size,ans);
+            }
+        }
+    }
 
+
+    //效率极低
+    //因为数组是可变的，所以每次都要复制一遍原数组，否则是对同一个地址上的值做改变
+    //而字符串是不可变的
 //    public List<List<Integer>> subsetsWithDup(int[] nums) {
 //        if (nums.length == 0) {
 //            List<List<Integer>> ans = new ArrayList<>();
@@ -58,11 +67,12 @@ class Solution2 {
 //        System.arraycopy(nums,1,subnums,0,subnums.length);
 //        List<List<Integer>> lists = subsetsWithDup(subnums);
 //        for (List<Integer> list:lists){
-//            List<Integer> copy=new ArrayList<>(list);
-//            set.add(copy);
-//            copy.add(nums[0]);
-//            copy.sort((a,b)->a-b);
-//            set.add(copy);
+//            List<Integer> copy1=new ArrayList<>(list);
+//            set.add(copy1);
+//            List<Integer> copy2=new ArrayList<>(list);
+//            copy2.add(nums[0]);
+//            copy2.sort((a,b)->a-b);
+//            set.add(copy2);
 //        }
 //        ans.addAll(set);
 //        return ans;
