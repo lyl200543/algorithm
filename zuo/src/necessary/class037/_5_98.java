@@ -31,27 +31,45 @@ public class _5_98 {
 //}
 
 
+//
 class Solution5 {
-    private long max, min;
-
     public boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            max = Long.MIN_VALUE;
-            min = Long.MAX_VALUE;
-            return true;
-        }
-        boolean ret1 = isValidBST(root.left);
-        long lmax = max;
-        long lmin = min;
-        boolean ret2 = isValidBST(root.right);
-        long rmax = max;
-        long rmin = min;
-        max = Math.max(Math.max(lmax, rmax), root.val);
-        min = Math.min(Math.min(lmin, rmin), root.val);
-        return ret1 && ret2 && lmax < root.val && rmin > root.val;
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
+    public boolean isValidBST(TreeNode node, long lower, long upper) {
+        if (node == null) {
+            return true;
+        }
+        if (node.val <= lower || node.val >= upper) {
+            return false;
+        }
+        return isValidBST(node.left, lower, node.val) && isValidBST(node.right, node.val, upper);
+    }
 }
+
+
+//class Solution5 {
+//    private long max, min;
+//
+//    public boolean isValidBST(TreeNode root) {
+//        if (root == null) {
+//            max = Long.MIN_VALUE;
+//            min = Long.MAX_VALUE;
+//            return true;
+//        }
+//        boolean ret1 = isValidBST(root.left);
+//        long lmax = max;
+//        long lmin = min;
+//        boolean ret2 = isValidBST(root.right);
+//        long rmax = max;
+//        long rmin = min;
+//        max = Math.max(Math.max(lmax, rmax), root.val);
+//        min = Math.min(Math.min(lmin, rmin), root.val);
+//        return ret1 && ret2 && lmax < root.val && rmin > root.val;
+//    }
+//
+//}
 
 //利用中序遍历一直递增就是搜索二叉树的性质（迭代）
 //class Solution {
