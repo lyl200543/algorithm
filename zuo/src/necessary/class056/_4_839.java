@@ -16,7 +16,7 @@ public class _4_839 {
 }
 
 
-class Solution {
+class Solution2 {
     private int[] parent;
     private int setNum;
 
