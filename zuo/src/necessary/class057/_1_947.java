@@ -15,7 +15,7 @@ public class _1_947 {
 }
 
 //通过哈希表将时间复杂度从O(n^2)降到O(n)
-class Solution3 {
+class Solution1 {
     Map<Integer, Integer> rowMap = new HashMap<>();
     Map<Integer, Integer> colMap = new HashMap<>();
     private int[] parent;
