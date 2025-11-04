@@ -52,6 +52,7 @@ class Solution3 {
         int path = 0;
         int x = find(a);
         int y = find(b);
+        //集合的代表元素同时也是集合最大值的下标
         if (vals[x] < vals[y]) {
             parent[x] = y;
         } else if (vals[x] > vals[y]) {
