@@ -46,7 +46,7 @@ class Main {
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
         }
-        int[] inDegree = new int[n+1];
+        int[] inDegree = new int[n + 1];
         for (int[] e : edges) {
             graph.get(e[0]).add(e[1]);
             inDegree[e[1]]++;
@@ -59,19 +59,21 @@ class Main {
             }
         }
         int[] ans = new int[n];
-        int count=0;
+        int count = 0;
         while (heap.len != 0) {
             int x = heap.delete();
-            ans[count++]=x;
-            for(int neighbor:graph.get(x)){
-                if(--inDegree[neighbor]==0){
+            ans[count++] = x;
+            for (int neighbor : graph.get(x)) {
+                if (--inDegree[neighbor] == 0) {
                     heap.add(neighbor);
                 }
             }
         }
-        for (int i = 0; i < n; i++) {
-            System.out.println(ans[i]+" ");
+        int i;
+        for (i = 0; i < n - 1; i++) {
+            System.out.print(ans[i] + " ");
         }
+        System.out.print(ans[i]);
     }
 
     private static class Heap {
@@ -87,17 +89,17 @@ class Main {
             arr[len++] = x;
             int index = len - 1;
             while (index != 0 && arr[(index - 1) / 2] > arr[index]) {
+                int tmp = arr[index];
+                arr[index] = arr[(index - 1) / 2];
+                arr[(index - 1) / 2] = tmp;
                 index = (index - 1) / 2;
             }
-            arr[len - 1] = arr[index];
-            arr[index] = x;
         }
 
         int delete() {
             int ans = arr[0];
             arr[0] = arr[--len];
             int parent = 0, leftchild, rightchild;
-            int tmp = arr[parent];
             while (parent * 2 + 1 < len) {
                 leftchild = parent * 2 + 1;
                 rightchild = leftchild + 1;
@@ -105,10 +107,11 @@ class Main {
                 if (arr[smallchild] > arr[parent]) {
                     break;
                 }
+                int tmp = arr[parent];
                 arr[parent] = arr[smallchild];
+                arr[smallchild]=tmp;
                 parent = smallchild;
             }
-            arr[parent] = tmp;
             return ans;
         }
     }
