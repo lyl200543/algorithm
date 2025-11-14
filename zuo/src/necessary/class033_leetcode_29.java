@@ -66,7 +66,7 @@ public class class033_leetcode_29 {
     }
 }
 
-class Solution19 {
+class Solution9 {
     public static int min = Integer.MIN_VALUE;
 
     //考虑最小整数：
