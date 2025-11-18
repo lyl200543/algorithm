@@ -36,7 +36,7 @@ public class _2_prim {
             }
             //prim
             Set<Integer> set = new HashSet<>();
-            PriorityQueue<int[]> weight = new PriorityQueue<>();
+            PriorityQueue<int[]> weight = new PriorityQueue<>((a, b) -> a[1] - b[1]);
             int count = 0, len = 0;
             set.add(1);
             for (int[] to : graph.get(1)) {
@@ -49,9 +49,9 @@ public class _2_prim {
                     set.add(cur);
                     count++;
                     len += poll[1];
-                }
-                for (int[] to : graph.get(cur)) {
-                    weight.add(new int[]{to[0], to[1]});
+                    for (int[] to : graph.get(cur)) {
+                        weight.add(new int[]{to[0], to[1]});
+                    }
                 }
             }
             if (count == n - 1) {
@@ -64,6 +64,4 @@ public class _2_prim {
         out.close();
         br.close();
     }
-
-
 }
