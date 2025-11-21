@@ -19,12 +19,11 @@ public class _1_1162 {
 class Solution1 {
     public int maxDistance(int[][] grid) {
         int n = grid.length;
-        int m = grid[0].length;
-        int[][] queue = new int[n * m][2];
+        int[][] queue = new int[n * n][2];
         int l = 0, r = 0;
         int seas = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
                     queue[r][0] = i;
                     queue[r++][1] = j;
@@ -33,10 +32,10 @@ class Solution1 {
                 }
             }
         }
-        if (seas == 0 || seas == n * m) {
+        if (seas == 0 || seas == n * n) {
             return -1;
         }
-        int level = 1;
+        int level = 0;
         while (l < r) {
             int size = r - l;
             level++;
@@ -46,7 +45,7 @@ class Solution1 {
                 for (int i = 0; i < 4; i++) {
                     int x1 = x + move[i];
                     int y1 = y + move[i + 1];
-                    if (x1 >= 0 && x1 < n && y1 >= 0 && y1 < m && grid[x1][y1] == 0) {
+                    if (x1 >= 0 && x1 < n && y1 >= 0 && y1 < n && grid[x1][y1] == 0) {
                         grid[x1][y1] = level;
                         queue[r][0] = x1;
                         queue[r++][1] = y1;
@@ -57,5 +56,6 @@ class Solution1 {
         return level - 1;
     }
 
+    //处理上下左右的优化方法：
     private int[] move = new int[]{-1, 0, 1, 0, -1};
 }
