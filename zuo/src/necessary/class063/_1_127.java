@@ -8,8 +8,8 @@ import java.util.List;
  *Package: necessary.class063
  *Description:创建于 2025/11/30 22:00
  * https://leetcode.cn/problems/word-ladder/
- * 双向广搜：两边同时bfs,每次选跟小的一边bfs，直到相遇
- * 1.优化：剪枝
+ * 双向广搜：
+ * 1.优化：剪枝 ->两边同时bfs,每次选跟小的一边bfs，直到相遇
  *@Author lyl
  *@Version 1.0
  */

@@ -8,6 +8,11 @@ import java.util.Arrays;
  *Package: necessary.class063
  *Description:创建于 2025/12/4 20:37
  * https://www.luogu.com.cn/problem/P4799
+ * 双向广搜：
+ * 2.一类特征明显的题目：
+ *    解决题目需要对每个选项做是否的选择
+ *    解决的数据量一般是长度<=40的数组
+ *    --》全部一起解决需要2^40 > 10^8,双向广搜只需要2^20 < 10^7
  *@Author lyl
  *@Version 1.0
  */
@@ -45,13 +50,16 @@ class Main {
     private static long compute() {
         int lsize = f(0, n >> 1, 0, w, lsum, 0);
         int rsize = f(n >> 1, n, 0, w, rsum, 0);
-        Arrays.sort(lsum);
-        Arrays.sort(rsum);
+        //数组的范围很重要，否则前面全是0
+        Arrays.sort(lsum,0,lsize);
+        Arrays.sort(rsum,0,rsize);
         long ans = 0;
         for (int i = 0, j = rsize - 1; i < lsize; ) {
             if (j >= 0 && lsum[i] + rsum[j] <= w) {
                 ans += j + 1;
                 i++;
+            } else if (j < 0) {
+                break;
             } else {
                 j--;
             }
